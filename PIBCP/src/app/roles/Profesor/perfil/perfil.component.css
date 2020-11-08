@@ -1,0 +1,153 @@
+body {
+    background-image: url('../../../../assets/images/portada.jpg') !important;
+    background-size: cover;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    -webkit-box-pack: justify;
+    -webkit-justify-content: center;
+    -ms-flex-pack: justify;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: center;
+    -ms-flex-pack: justify;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.boxA {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel,
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 18vh;
+    margin-bottom: 2.5%;
+}
+
+.carousel-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.boxB {
+    position: relative;
+    width: 100%;
+    height: 18vh;
+}
+
+.caro {
+    position: relative;
+    width: 35%;
+    height: 90%;
+    margin: auto;
+    opacity: 0.3;
+    z-index: 100;
+}
+
+.indica {
+    position: absolute;
+    top: -15%;
+}
+
+.im {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+mat-form-field {
+    width: 95%;
+    margin-left: 2%;
+}
+
+.matf2 {
+    width: 46%;
+    margin-right: 1%;
+    margin-left: 2%;
+}
+
+input {
+    color: black;
+}
+
+h1 {
+    color: white;
+}
+
+.btn {
+    position: relative;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.pick-avatar {
+    width: 70px;
+    opacity: 0.3;
+}
+
+.pick-avatar-seleccionado {
+    transition: opacity 0.2s linear;
+    opacity: 1 !important;
+}
+
+mat-card {
+    width: 100%;
+    height: fit-content;
+}
+
+.nucleos {
+    height: 50.7vh;
+    max-height: 50.7vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.f {
+    height: 60vh;
+}
+
+select {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.other {
+    position: relative;
+    display: inline-flexbox;
+}
+
+.delete {
+    outline: none;
+}
+
+.f4 {
+    width: 15vw;
+    background-color: royalblue;
+}
+
+.ic {
+    position: absolute;
+    right: 0;
+}
+
+.f3 {
+    width: 48%;
+    background-color: royalblue;
+}

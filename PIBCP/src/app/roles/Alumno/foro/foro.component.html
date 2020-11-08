@@ -1,0 +1,62 @@
+<app-nav></app-nav>
+
+<body>
+    <div class="general">
+        <div class="container">
+            <div class="boxAdd">
+                <mat-card>
+                    <mat-card-header>
+                        <img mat-card-avatar class="example-header-image" [src]="persona.url_foto" alt="">
+                        <mat-card-title>
+                            <h3>¿que deseas compartir?</h3>
+                        </mat-card-title>
+
+                    </mat-card-header>
+                    <mat-card-content>
+                        <form [formGroup]="publicacion" autocomplete="off">
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Tipo</mat-label>
+                                <mat-select formControlName="tipo" required>
+                                    <mat-option *ngFor="let item of tipos" [value]="item">
+                                        {{item.tipo}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="publicacion.controls.tipo.invalid">
+                                    <span *ngIf="publicacion.controls.tipo.errors.required">Este campo es requerido</span>
+                                </mat-error>
+                            </mat-form-field>
+
+
+                            <br>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Tu publicacion</mat-label>
+                                <textarea matInput formControlName="asunto" required></textarea>
+                                <mat-error *ngIf="publicacion.controls.asunto.invalid">
+                                    <span *ngIf="publicacion.controls.asunto.errors.required">Este campo es requerido</span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <button (click)="guardar()" mat-raised-button class="btn btn-primary save">Publicar</button>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <mat-card *ngFor="let item of muro" class="example-card">
+                <mat-card-header class="bg-dark">
+                    <img mat-card-avatar class="example-header-image" [src]="item.persona_publicacion.url_foto" alt="">
+                    <mat-card-title>{{item.persona_publicacion.nombre}}</mat-card-title>
+                    <mat-card-subtitle>{{item.persona_publicacion.correo}}</mat-card-subtitle>
+                    <button class="delete" *ngIf="persona.id === item.persona_publicacion.id" (click)="eliminar(item.id)" mat-button><mat-icon>delete_forever</mat-icon></button>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-card-subtitle>{{item.tipo.tipo}}</mat-card-subtitle>
+                    <p>
+                        {{item.asunto}}
+                    </p>
+
+                    <mat-card-subtitle>{{item.fecha | date:' MMMM d, h:mm a'}}</mat-card-subtitle>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</body>

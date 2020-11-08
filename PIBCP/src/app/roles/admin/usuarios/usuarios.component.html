@@ -1,0 +1,55 @@
+<app-nav></app-nav>
+
+<body>
+    <div class="container">
+        <div class="boxA">
+            <div class="boxImg">
+                <form>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Roles</mat-label>
+                        <mat-select [(ngModel)]="seleccionado" name="food">
+                            <mat-option *ngFor="let food of roles" (click)="traerUsers(0)" [value]="food.id">
+                                {{food.rol}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+                <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="text-primary"> ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="avatar">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>AVATAR</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> <img [src]="element.url_foto" class="item"> </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nombre">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="text-primary">NOMBRE</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="correo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="text-primary">CORREO</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.correo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rol">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="text-primary">ROL</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.rol.rol}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+                <mat-paginator [pageSize]="5" [length]="cantidad" (page)="cambioPagina($event)"></mat-paginator>
+            </div>
+            <div class="boxL">
+                <div class="containerLog">
+                    <img class="im" src="../../../../assets/images/student10.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

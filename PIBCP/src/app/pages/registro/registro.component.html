@@ -1,0 +1,192 @@
+<body>
+    <div class="container">
+        <div class="box">
+            <mat-tab-group class="group" [selectedIndex]="selectedIndex" dynamicHeight>
+                <mat-tab class="tab" label="Iniciar Sesión">
+                    <div class="boxA">
+                        <div class="boxImg">
+                            <img class="im" src="../../../assets/images/students3.jpg" alt="">
+                        </div>
+                        <div class="boxL">
+                            <div class="containerLog">
+                                <h1>Iniciar Sesion</h1>
+                                <form [formGroup]="personaLog">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Correo</mat-label>
+                                        <input class="field" autocomplete="off" matInput placeholder="pat@example.com" formControlName="correo" required>
+                                        <mat-error *ngIf="personaLog.controls.correo.touched && personaLog.controls.correo.invalid">
+                                            <span *ngIf="personaLog.controls.correo.errors.required">Este campo es requerido</span>
+                                            <span *ngIf="personaLog.controls.correo.errors.email">El Email es incorrecto</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Clave</mat-label>
+                                        <input autocomplete="off" matInput formControlName="clave" type="password" required>
+                                        <mat-error *ngIf="personaLog.controls.clave.touched && personaLog.controls.clave.invalid">
+                                            <span *ngIf="personaLog.controls.clave.errors.required">Este campo es requerido</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <button (click)="Login()" class="btn btn-primary">Iniciar Sesion</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="Registrarme">
+                    <!--
+                        <div class="boxA">
+                        <div class="boxImg">
+                            <img src="../../../assets/images/students3.jpg" alt="">
+                        </div>
+                        <div class="boxL">
+                            <div class="containerReg">
+                                <h1>Registro</h1>
+                                <form #Registro="ngForm">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Nombre</mat-label>
+                                        <input class="field" autocomplete="off" matInput [(ngModel)]="persona.nombre" name="nombre" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Apellido</mat-label>
+                                        <input autocomplete="off" matInput [(ngModel)]="persona.apellido" name="clave" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Documento</mat-label>
+                                        <input autocomplete="off" maxlength="10" matInput [(ngModel)]="persona.documento" #documento name="documento" required>
+                                        <mat-hint align="end">{{documento.value.length}} / 10</mat-hint>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Correo</mat-label>
+                                        <input class="field" type="emailRegx" autocomplete="off" matInput [(ngModel)]="persona.correo" name="correo" #nombre required>
+                                        <mat-error *ngIf="nombre.invalid">
+                                            <span>Correo Incorrecto</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Clave</mat-label>
+                                        <input autocomplete="off" matInput [(ngModel)]="persona.clave" name="clave" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Roles</mat-label>
+                                        <mat-select [(ngModel)]="persona.rol" name="rol" required>
+                                            <mat-option *ngFor="let item of rol" [value]="item">
+                                                {{item.rol}}
+                                            </mat-option>
+                                        </mat-select>
+
+                                    </mat-form-field>
+                                    <button (click)="guardar( Registro )" class="btn btn-primary">Registrarme</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+
+
+
+
+                    <div class="boxA">
+                        <div class="boxImg">
+                            <img class="im" src="../../../assets/images/students3.jpg" alt="">
+                        </div>
+                        <div class="boxL">
+                            <div class="containerReg">
+                                <h1>Registro</h1>
+
+                                <form [formGroup]="personaReg" autocomplete="off">
+                                    <div class="boxB">
+                                        <div id="carouselExampleIndicators" class="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active" *ngFor="let item of Photos; let i = index" [ngClass]="{'active': i == 0}">
+                                                    <img [src]="item.Url" (click)="seleccionarImagen(item)" [ngClass]="{'pick-avatar-seleccionado': item.Select === true}" class="d-block caro" alt="...">
+
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <mat-error *ngIf="personaReg.controls.url_foto.invalid">
+                                        <span *ngIf="personaReg.controls.url_foto.errors.required">Por favor selecciona tu avatar</span>
+                                    </mat-error>
+                                    <mat-form-field class="matf2" appearance="legacy">
+                                        <mat-label>Nombre</mat-label>
+                                        <input class="field" color="ligth" autocomplete="off" matInput formControlName="nombre" required>
+                                        <mat-error *ngIf="personaReg.controls.nombre.touched && personaReg.controls.nombre.invalid">
+                                            <span *ngIf="personaReg.controls.nombre.errors.required">Este campo es requerido</span>
+                                            <span *ngIf="personaReg.controls.nombre.errors.pattern">El nombre es incorrecto</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="matf2" appearance="legacy">
+                                        <mat-label>Apellido</mat-label>
+                                        <input autocomplete="off" matInput formControlName="apellido" required>
+                                        <mat-error *ngIf="personaReg.controls.apellido.touched && personaReg.controls.apellido.invalid">
+                                            <span *ngIf="personaReg.controls.apellido.errors.required">Este campo es requerido</span>
+                                            <span *ngIf="personaReg.controls.apellido.errors.pattern">El Email es incorrecto</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="matf2" appearance="legacy">
+                                        <mat-label>Documento</mat-label>
+                                        <input autocomplete="off" maxlength="10" matInput formControlName="documento" #documento required>
+                                        <mat-hint align="end">{{documento.value.length}} / 10</mat-hint>
+                                        <mat-error *ngIf="personaReg.controls.documento.touched && personaReg.controls.documento.invalid">
+                                            <span *ngIf="personaReg.controls.documento.errors.required">Este campo es requerido</span>
+                                            <span *ngIf="personaReg.controls.documento.errors.pattern">El Email es incorrecto</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="matf2" appearance="legacy">
+                                        <mat-label>Correo</mat-label>
+                                        <input class="field" type="emailRegx" autocomplete="off" matInput formControlName="correo" #nombre required>
+                                        <mat-error *ngIf="personaReg.controls.correo.touched && personaReg.controls.correo.invalid">
+                                            <span *ngIf="personaReg.controls.correo.errors.required">Este campo es requerido</span>
+                                            <span *ngIf="personaReg.controls.correo.errors.pattern">El Email es incorrecto</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="matf2" appearance="legacy">
+                                        <mat-label>Clave</mat-label>
+                                        <input autocomplete="off" matInput formControlName="clave" required>
+                                        <mat-error *ngIf="personaReg.controls.clave.invalid">
+                                            <span *ngIf="personaReg.controls.clave.errors.required">Este campo es requerido</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="matf2" appearance="legacy">
+                                        <mat-label>Roles</mat-label>
+                                        <mat-select formControlName="rol" required>
+                                            <mat-option *ngFor="let item of rol" [value]="item">
+                                                {{item.rol}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="personaReg.controls.rol.invalid">
+                                            <span *ngIf="personaReg.controls.rol.errors.required">Este campo es requerido</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <button (click)="guardar()" class="btn btn-primary">Registrarme</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</body>

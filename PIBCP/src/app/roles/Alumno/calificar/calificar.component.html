@@ -1,0 +1,23 @@
+<app-nav></app-nav>
+
+<body>
+    <div class="container">
+        <div class="calificar">
+            <div class="boxA">
+                <mat-card>
+                    <img [src]="profesor.url_foto" alt="">
+                    <mat-card-content>
+                        <mat-card-title>{{profesor.nombre}} {{profesor.apellido}}</mat-card-title>
+                        <mat-card-subtitle>{{profesor.correo}}</mat-card-subtitle>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="boxB">
+                <h1>Calificar Profesor</h1>
+                <div class="stars">
+                    <star-rating value="{{total}}" totalstars="{{totale}}" checkedcolor="yellow" uncheckedcolor="black" size="60px" (rate)="onRate($event)"></star-rating>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

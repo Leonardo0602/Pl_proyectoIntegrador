@@ -1,0 +1,80 @@
+<app-nav></app-nav>
+
+<body>
+    <div class="general">
+        <div class="containerl">
+            <div class="boxi">
+                <div class="formulario">
+                    <h1>Buscar Archivos</h1>
+                    <form>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nucleos</mat-label>
+                            <mat-select [(ngModel)]="seleccionado.nucleo_consulta" name="food">
+                                <mat-option *ngFor="let food of nucleos" (click)="Iniciar(0)" [value]="food">
+                                    {{food.nucleo}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                </div>
+                <!--*ngIf="porcentaje > 0 && porcentaje < 100"-->
+            </div>
+            <div class="box">
+
+                <div class="boxkkk">
+                    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container matColumnDef="titulo">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> TEMA </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="item">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                            <mat-cell *matCellDef="let element"> <img [src]="element.persona_archivo.url_foto" class="item"> </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="nucleo">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> NUCLEO </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.nucleo_archivo.nucleo}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="profesor">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> PROFESOR </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.persona_archivo.nombre + ' ' +element.persona_archivo.apellido}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="url">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> DESCARGAR </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <a [href]="element.url" target="_blank">Descargar</a>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fecha">
+                            <mat-header-cell class="w-75 th-center" *matHeaderCellDef mat-sort-header> FECHA </mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{element.fecha | date:' MMMM d'}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="calificacion">
+                            <mat-header-cell class="w-75 th-center" *matHeaderCellDef mat-sort-header> CALIFICACION </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <star-rating value="{{element.persona_archivo.total}}" totalstars="{{totales}}" readonly="true" checkedcolor="yellow" uncheckedcolor="black" size="20px"></star-rating>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                            <mat-cell *matCellDef="let row; let i=index;">
+                                <button style="outline: none; width: 100%;" [routerLink]="['/alumnos/main/calificar', row.persona_archivo.id]" mat-raised-button class="text-warning">Calificar <mat-icon>grade</mat-icon></button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <mat-paginator [pageSize]="7" [length]="cantidad" (page)="cambioPagina($event)"></mat-paginator>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

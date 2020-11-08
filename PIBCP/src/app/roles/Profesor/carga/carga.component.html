@@ -1,0 +1,85 @@
+<app-nav></app-nav>
+
+<body>
+    <div class="general">
+        <div class="containerl">
+            <div class="boxi">
+                <div class="formulario">
+                    <h1>Subir Archivo</h1>
+                    <form [formGroup]="personaReg" autocomplete="off">
+                        <mat-form-field class="mf" appearance="legacy">
+                            <mat-label>Titulo</mat-label>
+                            <input class="field" type="emailRegx" autocomplete="off" matInput formControlName="titulo" required>
+                            <mat-error *ngIf="personaReg.controls.titulo.touched && personaReg.controls.titulo.invalid">
+                                <span *ngIf="personaReg.controls.titulo.errors.required">Este campo es requerido</span>
+                                <span *ngIf="personaReg.controls.titulo.errors.pattern">El Email es incorrecto</span>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="mf" appearance="legacy">
+                            <mat-label>Nucleo</mat-label>
+                            <mat-select formControlName="nucleo_archivo" required>
+                                <mat-option *ngFor="let item of persona.nucleo" [value]="item">
+                                    {{item.nucleo}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="personaReg.controls.nucleo_archivo.invalid">
+                                <span *ngIf="personaReg.controls.nucleo_archivo.errors.required">Este campo es requerido</span>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="mf2" appearance="legacy">
+                            <ngx-mat-file-input formControlName="archivo" [accept]="'.pdf'" placeholder="Archivo requerido" (change)="cambioArchivo($event)" required></ngx-mat-file-input>
+                            <mat-icon matSuffix color="warn">folder</mat-icon>
+                            <mat-error *ngIf="personaReg.controls.nucleo_archivo.invalid">
+                                <span *ngIf="personaReg.controls.nucleo_archivo.errors.required">Este campo es requerido</span>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-progress-bar mode="determinate" [ngClass]="{'cargo': finalizado}" color="warn" [value]="porcentaje"></mat-progress-bar>
+                        <hr>
+                        <button mat-raised-button (click)="subirFire()" class="btn btn-primary">Subir Archivo</button>
+                    </form>
+                </div>
+                <!--*ngIf="porcentaje > 0 && porcentaje < 100"-->
+            </div>
+            <div class="box">
+
+                <div class="boxkkk">
+                    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container matColumnDef="titulo">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> DOCUMENTO </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="nucleo">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> NUCLEO </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.nucleo_archivo.nucleo}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="profesor">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> PROFESOR </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.persona_archivo.nombre}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="url">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> DESCARGAR </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <a [href]="element.url" target="_blank">Descargar</a>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fecha">
+                            <mat-header-cell class="w-75 th-center" *matHeaderCellDef mat-sort-header> FECHA </mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{element.fecha | date:' MMMM d, h:mm a'}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <mat-paginator [pageSize]="5" [length]="cantidad" (page)="cambioPagina($event)"></mat-paginator>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

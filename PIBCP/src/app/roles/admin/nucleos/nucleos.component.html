@@ -1,0 +1,41 @@
+<app-nav></app-nav>
+
+<body>
+    <div class="container">
+        <div class="boxA">
+            <div class="boxImg">
+                <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="text-primary"> ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nucleo">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="text-primary"> NUCLEO </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.nucleo}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+                <mat-paginator [pageSize]="5" [length]="cantidad" (page)="cambioPagina($event)"></mat-paginator>
+            </div>
+            <div class="boxL">
+                <div class="containerLog">
+                    <h1>Agregar Nucleo</h1>
+                    <form [formGroup]="nucleoReg">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Nombre del Nucleo</mat-label>
+                            <input class="field" autocomplete="off" matInput formControlName="nucleo" required>
+                            <mat-error *ngIf="nucleoReg.controls.nucleo.touched && nucleoReg.controls.nucleo.invalid">
+                                <span *ngIf="nucleoReg.controls.nucleo.errors.required">Este campo es requerido</span>
+                                <span *ngIf="nucleoReg.controls.nucleo.errors.pattern">El campo solo acepta caracteres de texto</span>
+                            </mat-error>
+                        </mat-form-field>
+                        <button (click)="guardar()" class="btn btn-primary">Insertar</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

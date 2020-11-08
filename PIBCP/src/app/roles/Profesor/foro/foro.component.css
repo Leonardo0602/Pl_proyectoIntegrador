@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Staatliches|Lobster');
+body {
+    background-image: url('../../../../assets/images/portada.jpg');
+    background-size: cover;
+    background-repeat: repeat-y;
+    height: fit-content;
+}
+
+.general {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container {
+    width: 40%;
+    padding: 10px;
+    height: auto;
+}
+
+.example-card {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.example-header-image {
+    background-size: cover;
+    margin-top: 2%;
+    /*border-radius: 100%;
+    width: 45px;
+    height: 45px;*/
+    border: 1.5px solid black;
+}
+
+.delete {
+    position: relative;
+    margin-top: 3%;
+    left: 40%;
+    height: 100%;
+}
+
+.boxAdd {
+    top: 2%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+mat-form-field,
+mat-select,
+textarea {
+    width: 100%;
+}
+
+mat-select,
+textarea {
+    color: white;
+}
+
+mat-card-header {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+mat-card {
+    padding: 0;
+}
+
+h3 {
+    text-align: center;
+    font-size: 3vw;
+    line-height: 4vw;
+    color: white;
+    font-family: 'Staatliches';
+}
+
+mat-card-content {
+    padding: 10px;
+}
+
+.save {
+    width: 100%;
+}

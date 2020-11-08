@@ -1,0 +1,72 @@
+<app-nav></app-nav>
+
+<body>
+    <div class="container">
+        <mat-card class="boxA">
+            <mat-card-header>
+                <img mat-card-avatar class="example-header-image" [src]="persona.url_foto" alt="">
+                <mat-card-title>{{persona.correo}}
+                </mat-card-title>
+                <mat-card-subtitle>{{persona.nombre}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="main">
+                <mat-card>
+                    <mat-card-content class="f">
+                        <form #EditForm="ngForm" autocomplete="off">
+                            <div class="boxB">
+                                <div id="carouselExampleIndicators" class="carousel" data-interval="false">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item" *ngFor="let item of Photos; let i = index" [ngClass]="{'active': i == 0}">
+                                            <img *ngIf="desactivado === false" [src]="item.Url" (click)="seleccionarImagen(item)" [ngClass]="{'pick-avatar-seleccionado': item.Select === true}" class="d-block caro" alt="...">
+                                            <img *ngIf="desactivado === true" [src]="persona.url_foto" class="d-block pick-avatar-seleccionado caro" alt="">
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Nombre</label>
+                                <div class="col-sm-6">
+                                    <input [disabled]="desactivado" class="form-control" color="ligth" autocomplete="off" [(ngModel)]="persona.nombre" name="nombre" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Apellido</label>
+                                <div class="col-sm-6">
+                                    <input [disabled]="desactivado" class="form-control" color="ligth" autocomplete="off" matInput [(ngModel)]="persona.apellido" name="apellido" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Correo</label>
+                                <div class="col-sm-6">
+                                    <input [disabled]="desactivado" class="form-control" color="ligth" type="emailRegx" autocomplete="off" matInput [(ngModel)]="persona.correo" name="correo" #nombre required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3">Clave</label>
+                                <div class="col-sm-6">
+                                    <input [disabled]="desactivado" class="form-control" color="ligth" autocomplete="off" matInput [(ngModel)]="persona.clave" name="clave" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <button class="btn btn-primary" (click)="activar()">Editar</button>
+                                <button *ngIf="desactivado === false" (click)="guardar(EditForm)" class="btn btn-primary">Salvar</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</body>

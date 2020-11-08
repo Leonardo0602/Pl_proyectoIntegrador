@@ -1,0 +1,63 @@
+<!--
+    <p>{{uno.length}} este es el uno</p>
+<p>{{dos.length}} este es el dos</p>
+<p>{{tres.length}} este es el tres</p>
+<p>{{cuatro.length}} este es el cuatro</p>
+<p>{{cinco.length}} este es el cinco</p>
+
+
+<p>{{total}}</p>
+
+
+<div style="text-align:center">
+    <star-rating value="{{total}}" totalstars="5" checkedcolor="yellow" uncheckedcolor="black" size="44px" (rate)="onRate($event)"></star-rating>
+</div>
+
+<div style="text-align:center">
+    <star-rating value="{{total}}" totalstars="{{totale}}" checkedcolor="yellow" uncheckedcolor="black" size="44px" (rate)="onRate($event)"></star-rating>
+</div>
+
+<p>{{profesor.calificacion | calificacionPipe}}</p>
+
+<button class="btn btn-primary" (click)="calcular()">Calcular</button>
+<button class="btn btn-primary" (click)="limpiar()">Limpiar</button>
+-->
+
+<app-nav></app-nav>
+
+<body>
+    <div class="boxm">
+        <div class="content">
+            <div class="buttons">
+                <button mat-raised-button (click)="activarNucleos()">Nucleos Tematicos mas consultados</button>
+                <button mat-raised-button (click)="activarProfesores()">Docentes mejores calificados</button>
+            </div>
+            <div class="panel">
+                <div [hidden]="profesores" class="docentes">
+                    <h1>Profesores Mejor Calificados</h1>
+                    <div class="todos">
+                        <mat-card *ngFor="let item of profes">
+                            <mat-card-header class="bg-dark">
+                                <mat-card-title>{{item.nombre + ' ' + item.apellido}}</mat-card-title>
+                            </mat-card-header>
+                            <img [src]="item.foto" alt="">
+                            <mat-card-content>
+                                <mat-card-subtitle>PROFESOR</mat-card-subtitle>
+                                <mat-card-subtitle>{{item.correo}}</mat-card-subtitle>
+                                <star-rating value="{{item.total}}" totalstars="{{stars}}" readonly="true" checkedcolor="yellow" uncheckedcolor="black" size="30px"></star-rating>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+                <div [hidden]="nucleos" class="nucleos">
+                    <h1>Nucleos Mas Buscados</h1>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="barData" [labels]="barLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+                      </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
